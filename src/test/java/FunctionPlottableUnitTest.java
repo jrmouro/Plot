@@ -22,11 +22,20 @@ public class FunctionPlottableUnitTest {
     @Test
     public void test() throws IOException {
         
+        
         List<String> functions = new ArrayList();
-        functions.add("sin(x)");
-        functions.add("cos(x)");
+        functions.add("(3.14159265359 * log((x - exp(1.0))))");
+        
+        List<String> sets = new ArrayList();        
+                
+        sets.add("title 'Test'");
+        sets.add("xlabel 'time'");
+        sets.add("ylabel 'volume'");
+        sets.add("grid");
+        sets.add("xrange [0:100]");
+        sets.add("yrange [0:20]");
     
-        Plottable p = new FunctionPlottable(functions, "Functions", CanonicalPath.getPath("sinx.plot"));
+        Plottable p = new FunctionPlottable(functions, sets, CanonicalPath.getPath("sinx.plot"));
         p.plot();
         
         

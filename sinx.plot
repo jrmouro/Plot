@@ -1,7 +1,8 @@
-set title "Functions"
-set xlabel "elapse time"
-set ylabel "volume"
+set title 'Test'
+set xlabel 'time'
+set ylabel 'volume'
 set grid
-f(x) = sin(x)
-g(x) = cos(x)
-plot f(x) title 'sin(x)', g(x) title 'cos(x)'
+set xrange [0:100]
+set yrange [0:20]
+f(x) = (3.14159265359 * log((x - exp(1.0))))
+plot f(x) title '(3.14159265359 * log((x - exp(1.0))))'

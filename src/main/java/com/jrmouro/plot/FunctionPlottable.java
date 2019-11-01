@@ -16,18 +16,22 @@ import java.util.List;
 public final class FunctionPlottable extends ScriptPlottable{
     
     final List<String> functions;
-    final String title;
+    final List<String> sets;
 
-    public FunctionPlottable(List<String> functions, String title, Path scriptPath) {
+        
+    public FunctionPlottable(
+            List<String> functions, 
+            List<String> sets,
+            Path scriptPath) {
         super(scriptPath);
         this.functions = functions;
-        this.title = title;
+        this.sets = sets;
     }
     
-    public FunctionPlottable(String function, String title, Path scriptPath) {
+    public FunctionPlottable(String function, List<String> sets, Path scriptPath) {
         super(scriptPath);
         this.functions = new ArrayList();
-        this.title = title;
+        this.sets = sets;
         
         this.functions.add(function);
     }
@@ -36,19 +40,14 @@ public final class FunctionPlottable extends ScriptPlottable{
     public String getScript() {
         
         StringBuilder sb = new StringBuilder();
-
-        sb.append("set title \"").append(title).append("\"\n");
-        sb.append("set xlabel \"elapse time\"\n");
-        sb.append("set ylabel \"volume\"\n");
-        sb.append("set grid\n");
         
+        for (String set : this.sets) {
+            sb.append("set ").append(set).append("\n");
+        }
         char c = 'f';
         for (String function : this.functions) {
             sb.append(c++).append("(x) = ").append(function).append("\n");
-        }      
-        
-        //sb.append("set xrange [0:1]\n");
-        //sb.append("set yrange [0:1]\n");
+        }     
         
         c = 'f';
         sb.append("plot ");        
